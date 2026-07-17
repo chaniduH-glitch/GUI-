@@ -1,0 +1,25 @@
+from tkinter import *
+screen = Tk()
+screen.title("Menu bar")
+screen.geometry("400x600")
+screen.config(background = "blue")
+menu_bar = Menu()
+file = Menu(menu_bar)
+menu_bar.add_cascade(label="File",menu= file)
+file.add_command(label= "new file")
+file.add_command(label="open file")
+file.add_command(label ="save file")
+file.add_separator()
+file.add_command(label = "close file",command = screen.destroy) 
+edit = Menu(menu_bar,tearoff=0)
+menu_bar.add_cascade(label="Edit",menu=edit)
+edit.add_command(label="redo")
+edit.add_command(label="undo")
+edit.add_command(label= "cut")
+edit.add_command(label="copy")
+edit.add_command(label = "paste")
+
+
+
+screen.config(menu=menu_bar)
+mainloop()
