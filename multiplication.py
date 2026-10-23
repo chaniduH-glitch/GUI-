@@ -9,10 +9,10 @@ math_table.place(x=100,y=20)
 numbers_range = Label(screen,text="numbers and range")
 numbers_range.place(x=15,y=50)
 num = IntVar()
-combobox = Combobox(screen,textvariable=num,width = 7)
+combobox = Combobox(screen,textvariable=num,width = 7) 
 combobox["values"]=list(range(0,101))
 combobox.place(x=130,y = 50)
-radiobutton = IntVar()
+radiobutton = IntVar() 
 radiobutton10 = Radiobutton(screen,text="10",variable=radiobutton,value = 10)
 radiobutton20 = Radiobutton(screen,text="20",variable=radiobutton,value=20)
 radiobutton30 = Radiobutton(screen,text="30",variable = radiobutton,value=30)
@@ -21,10 +21,20 @@ radiobutton10.place(x=230,y=50)
 radiobutton20.place(x=230,y=70)
 radiobutton30.place(x=230,y=90)
 
+def generate_num():
+    tables= "" 
+    for i in range(1,radiobutton.get()+1):
+        tables+= str(num.get())+"x"+str(i)+"="+str(num.get()*i)+"\n"
+    answer.configure(text = tables)
 
+    
+    
 
-
-
+    
+answer = Label(screen)
+answer.place(x=120,y=130)
+generate = Button(screen,text="generate",command=generate_num)
+generate.place(x=120,y=100)
 
 mainloop()
 
