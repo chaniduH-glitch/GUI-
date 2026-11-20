@@ -5,6 +5,39 @@ screen.geometry("500x600")
 screen.config(background="red")
 
 dict1 = {}
+def display(event):
+    new_window = Toplevel(screen)
+    index = listbox1.curselection()
+    contact = ""
+    if index:
+        key = listbox1.get(index) 
+        contact = "Name :"+key+"\n"
+        details = dict1[key]
+        contact+="address :"+details[0]+"\n"
+        contact+="mobile :"+details[1]+"\n"
+        contact+="email :"+details[2]+"\n"
+        contact+="birthday :"+details[3]+"\n"
+        l = Label(new_window)
+        l.place(x=10,y=10)
+        l.configure(text=contact)
+
+
+def add(): 
+    key = name_enter.get()
+    if key == "":
+        messagebox.showinfo("name","name cannot be empty")
+    else:
+        if key not in dict1.keys():
+            listbox1.insert(END,key)
+        dict1[key] = (address_enter.get(),mobile_enter.get(),email_enter.get(),birthday_enter.get())
+        clear_all()
+
+
+
+    
+
+    
+
 
 def clear_all():
     name_enter.delete(0,END)
@@ -66,14 +99,17 @@ open.place(x=250,y=50)
 
 listbox1 = Listbox(screen,width=30)
 listbox1.place(x=50,y=100)
+listbox1.bind("<<ListboxSelect>>",display)
 
-edit1 = Button(screen,text="edit")
+
+
+edit1 = Button(screen,text="edit",command = edit)
 edit1.place(x=50,y=280)
 
 delete = Button(screen,text="delete")
 delete.place(x=85,y=280)
 
-update_add = Button(screen,text="update/add")
+update_add = Button(screen,text="update/add",command = add)
 update_add.place(x=350,y=280)
 
 save = Button(screen,text="save",width=25)
